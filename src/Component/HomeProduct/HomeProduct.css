@@ -1,0 +1,18 @@
+/* .carditem {
+
+    transition: all 1s;
+}
+
+.carditem:hover{
+    box-shadow: 2px 2px 5px 5px rgba(39,42,42,0.75);
+} */
+.product-image {
+    transition: all 1s;
+}
+.carditem:hover .product-image {
+    transform: scale(1.05);
+}
+
+.carditem .moredetail {
+    text-decoration: none;
+}

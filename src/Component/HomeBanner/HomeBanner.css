@@ -1,0 +1,27 @@
+.swiper {
+    background-color: #dcdcdc;
+}
+
+
+.home-banner-container button {
+    border-radius: 15px;
+    padding: 10px 16px;
+    background-color: #f02d34;
+    color: white;
+    border: none;
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 10000 !important;
+    transition: 0.5s;
+}
+
+.home-banner-container button:hover {
+    background-color: #840509c1;
+}
+
+
+
+
+
