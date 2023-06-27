@@ -59,7 +59,7 @@ const ProductDetail = () => {
 
 
     return (
-        <div>
+        <div className="mt-4">
             <div className='container p-4'>
                 {contextHolder}
                 <Row gutter={[20, 20]} >
@@ -123,7 +123,7 @@ const ProductDetail = () => {
 
                     </Row>
                 </div>
-            </div>
+            </div >
         </div>
 
     )

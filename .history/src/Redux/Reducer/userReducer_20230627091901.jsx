@@ -53,7 +53,6 @@ export const login = (userLogin) => {
     return async dispatch => {
         const res = await http.post('api/Users/signin', userLogin)
         if (res) {
-            console.log(res.data);
             setStoreJson(USER_LOGIN, res.data.content);
             const action = logInAction(userLogin);
             dispatch(action);

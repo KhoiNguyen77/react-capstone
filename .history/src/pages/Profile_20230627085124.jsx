@@ -16,7 +16,6 @@ const Profile = () => {
     getUserProfile()
   }, [])
   return (
-    <div className='container'>
       <section style={{ backgroundColor: '#eee' }}>
         <div className="container py-5">
           <div className="row">
@@ -59,7 +58,7 @@ const Profile = () => {
                   <ul className="list-group list-group-flush rounded-3">
                     <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                       <i className="fab fa-github fa-lg" style={{ color: '#333333' }} />
-                      <p className="mb-0">KhoiNguyen77</p>
+                      <p className="mb-0">khoinguyen77</p>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                       <i className="fab fa-instagram fa-lg" style={{ color: '#ac2bac' }} />
@@ -109,18 +108,6 @@ const Profile = () => {
                     </div>
                     <div className="col-sm-9">
                       <p className="text-muted mb-0">Ho Chi Minh City, VietNam</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <p className="mb-0">Gender</p>
-                    </div>
-                    <div className="col-sm-9">
-                      <Radio.Group id='gender' name='gender' defaultValue={true} disabled={true} value={userProfile?.gender}>
-                        <Radio value={true} id='male'>Male</Radio>
-                        <Radio value={false} id='female'>Femail</Radio>
-                      </Radio.Group>
                     </div>
                   </div>
                 </div>
@@ -187,7 +174,6 @@ const Profile = () => {
           </div>
         </div>
       </section>
-    </div>
   )
 }
 

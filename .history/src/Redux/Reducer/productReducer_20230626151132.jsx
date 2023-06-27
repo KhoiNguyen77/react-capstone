@@ -62,7 +62,7 @@ export const getAllProductApi = () => {
         let loadingState = setLoading('block');
         dispatch(loadingState);
         let res = await http.get('/api/Product');
-        const actionProduct = getAllProductAction(res?.data.content);//fulfill
+        const actionProduct = getAllProductAction(res.data.content);//fulfill
         dispatch(actionProduct);
         let loadingStateNone = setLoading('none');
         dispatch(loadingStateNone);

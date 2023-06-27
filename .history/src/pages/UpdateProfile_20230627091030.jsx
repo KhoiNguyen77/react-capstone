@@ -69,9 +69,9 @@ const UpdateProfile = () => {
                                         xl: 130,
                                         xxl: 150,
                                     }}
-                                    src={userUpdate?.avatar}
+                                    src={userProfile?.avatar}
                                 />
-                                <h5 className="my-3">{userUpdate?.name}</h5>
+                                <h5 className="my-3">{userProfile?.name}</h5>
                                 <p className="text-muted mb-1">Front End Developer</p>
                                 <p className="text-muted mb-4">Ho Chi Minh City, VietNam</p>
                             </div>

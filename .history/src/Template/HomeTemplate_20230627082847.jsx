@@ -9,10 +9,10 @@ const HomeTemplate = () => {
         <div className='header'>
             <Header></Header>
         </div>
-        <div className="content row align-items-center justify-content-center" style={{minHeight: "650px"}}>
+        <div className="content align-items-center justify-content-center" style={{minHeight: "650px"}}>
             <Outlet></Outlet>
         </div>
-        <footer className='fs-3 p-4 text-center text-white bg-dark'>
+        <footer className='fs-3 p-4 text-center text-white bg-dark mt-5'>
             @2023 CyberSoft All rights Resevered
         </footer>
     </>

@@ -14,7 +14,7 @@ const Order = () => {
         getUserProfile()
     }, [])
     return (
-        <section className="h-100 gradient-custom">
+        <section className="h-100 gradient-custom" style={{ background: 'linear-gradient(90deg, rgba(95,245,228,1) 0%, rgba(238,246,238,1) 69%)' }}>
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-10 col-xl-8">

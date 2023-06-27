@@ -14,7 +14,7 @@ const Order = () => {
         getUserProfile()
     }, [])
     return (
-        <section className="h-100 gradient-custom">
+        <section className="h-100 gradient-custom" style={{ background: 'linear-gradient(90deg, rgba(95,245,228,1) 0%, rgba(238,246,238,1) 69%)' }}>
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-10 col-xl-8">
@@ -25,7 +25,7 @@ const Order = () => {
                             <div className="card-body p-4">
                                 <div className="d-flex justify-content-between align-items-center mb-4">
                                     <p className="lead fw-normal mb-0" style={{ color: '#a8729a' }}>Receipt</p>
-                                    <p className="small text-muted mb-0">Receipt Date : </p>
+                                    <p className="small text-muted mb-0">Receipt Date : 1KAU9-84UIL</p>
                                 </div>
                                 <div className="card shadow-0 border mb-4">
                                     <div className="card-body">

@@ -123,7 +123,7 @@ const ProductDetail = () => {
 
                     </Row>
                 </div>
-            </div>
+            </div >
         </div>
 
     )
