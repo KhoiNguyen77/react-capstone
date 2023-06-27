@@ -2,11 +2,8 @@ import React, { useEffect } from 'react'
 import { Avatar, Button, Card, Col, Row, message, Popconfirm } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantityAction, delCartAction, getAllProductApi } from '../Redux/Reducer/productReducer';
-import { customNavigate } from '..';
-import { USER_LOGIN } from '../util/config';
 export const Cart = () => {
     const { cart } = useSelector(state => state.productReducer);
-    let { userLogin } = useSelector(state => state.userReducer)
     const dispatch = useDispatch();
     const getProductApi = async () => {
         const actionAsync = getAllProductApi();
@@ -24,16 +21,10 @@ export const Cart = () => {
             sum += item.quantity;
         } return sum
     }
-    const checkLogin = () => {
-        if (userLogin == null) {
-            customNavigate.push('/login')
-        } else {
-            return
-        }
-    }
+
     useEffect(() => {
         getProductApi();
-        checkLogin();
+
     }, [])
     return (
         <section>
@@ -48,7 +39,7 @@ export const Cart = () => {
                             <div className="card-body">
                                 {/* Single item */}
                                 {cart.map((item) => {
-                                    return <div className="row align-items-center border-bottom">
+                                    return <div className="row">
                                         <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                             {/* Image */}
                                             <div className="bg-image rounded" >
@@ -81,8 +72,12 @@ export const Cart = () => {
                                         </div>
                                         <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                             {/* Quantity */}
-                                            <div className="mb-2" style={{ maxWidth: 300 }}>
-                                                <div className="form-group d-flex justify-content-center">
+                                            <div className="d-flex mb-2" style={{ maxWidth: 300 }}>
+
+
+
+
+                                                <div className="form-group d-flex mx-auto w-50">
                                                     <button className="btn btn-primary me-2" onClick={() => {
                                                         const payload = {
                                                             id: item.id,
@@ -92,7 +87,7 @@ export const Cart = () => {
                                                         dispatch(action);
                                                     }}><i className="fa fa-minus" />
                                                     </button>
-                                                    <input id="form1" value={item.quantity} type="number" className="form-control text-center w-50" />
+                                                    <input id="form1" value={item.quantity} type="number" className="form-control text-center w-25" />
                                                     <button className="btn btn-primary mx-2 me-2" onClick={() => {
                                                         const payload = {
                                                             id: item.id,
@@ -107,14 +102,13 @@ export const Cart = () => {
                                             {/* Quantity */}
                                             {/* Price */}
 
-                                            <p className="text-start text-center">
+                                            <p className="text-start text-md-center">
                                                 <p>Quantity</p>
                                                 <strong>${item.price}</strong>
                                             </p>
                                             {/* Price */}
                                         </div>
                                     </div>
-
                                 })}
 
 

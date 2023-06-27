@@ -10,6 +10,14 @@ import { USER_LOGIN, http, setStoreJson } from '../util/config';
 import { message } from 'antd';
 
 const Login = () => {
+    const [messageApi, contextHolder] = message.useMessage();
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Login successful',
+            duration: 5,
+        });
+    };
     const { userLogin } = useSelector(state => state.userReducer)
     const dispatch = useDispatch();
     const logIn = useFormik({
@@ -20,6 +28,7 @@ const Login = () => {
         onSubmit: (values, { resetForm }) => {
             const actionLogin = login(values);
             dispatch(actionLogin)
+            success(actionLogin);
         }
 
     })
@@ -43,6 +52,7 @@ const Login = () => {
     }, [])
     return (
         <section section className="vh-100" >
+            {contextHolder}
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-9 col-lg-6 col-xl-5">

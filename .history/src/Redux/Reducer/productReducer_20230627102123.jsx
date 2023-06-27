@@ -19,7 +19,11 @@ const productReducer = createSlice({
         addCartAction: (state, action) => {
             let item = { ...action.payload, quantity: 1 };
             console.log(item);
-            let itemCart = state.cart.find(sp => sp.id === item.id && sp.selectedSize === item.selectedSize);
+            let itemCart = state.cart.find(sp => {
+                if (sp.id === item.id && sp.id === item.id) {
+                    return sp
+                } else return undefined
+            });
             if (itemCart) {
                 itemCart.quantity += 1;
             } else {

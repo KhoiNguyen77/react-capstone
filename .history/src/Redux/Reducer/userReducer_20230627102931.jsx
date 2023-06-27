@@ -74,8 +74,6 @@ export const getProfile = () => {
             dispatch(loadingStateNone);
         } else {
             customNavigate.push('/login');
-            let loadingStateNone = setLoading('none');
-            dispatch(loadingStateNone);
         }
     }
 }
