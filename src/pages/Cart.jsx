@@ -1,17 +1,45 @@
 import React, { useEffect } from 'react'
 import { Avatar, Button, Card, Col, Row, message, Popconfirm } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeQuantityAction, delCartAction, getAllProductApi } from '../Redux/Reducer/productReducer';
+
+import { changeQuantityAction, delCartAction, getAllProductApi, orderProductAction, orderProductApi } from '../Redux/Reducer/productReducer';
 import { customNavigate } from '..';
+import { useFormik } from 'formik'
+import * as yup from 'yup';
 import { USER_LOGIN } from '../util/config';
 export const Cart = () => {
-    const { cart } = useSelector(state => state.productReducer);
-    let { userLogin } = useSelector(state => state.userReducer)
+    const { cart, order } = useSelector(state => state.productReducer);
+    let { userLogin } = useSelector(state => state.userReducer);
+    console.log(cart);
     const dispatch = useDispatch();
     const getProductApi = async () => {
         const actionAsync = getAllProductApi();
         dispatch(actionAsync);
     }
+    const handleOrder = (e) => {
+
+
+    }
+
+    // const frm = useFormik({
+    //     initialValues: {
+    //         productId: orderDetail?.id,
+    //         quantity: orderDetail?.quantity
+    //     },
+    //     onSubmit: (values) => {
+    //         console.log(actionOrder)
+    //         const actionOrder = orderProductApi(values);
+    //         dispatch(actionOrder);
+    //     },
+    //     validationSchema: yup.object().shape({
+    //         productId: yup.string().required('Email cannot be blank !').email('email is not valid'), //.matches()
+    //         quantity: yup.number().required('Password cannt be blank')
+    //     })
+    // })
+    // const orderProduct = (value) => {
+    //     const actionOrder = orderProductApi(value);
+    //     dispatch(actionOrder);
+    // }
     const tinhTong = () => {
         let sum = 0;
         for (let item of cart) {
@@ -48,9 +76,9 @@ export const Cart = () => {
                             <div className="card-body">
                                 {/* Single item */}
                                 {cart.map((item) => {
-                                    return <div className="row align-items-center border-bottom">
-                                        <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                            {/* Image */}
+                                    return <div className="row align-items-center border-bottom" key={item.id} >
+                                        <div className="col-lg-3 col-md-12 mb-4 mb-lg-0" >
+
                                             <div className="bg-image rounded" >
                                                 <img src={item.image} className="w-100" alt="Blue Jeans Jacket" />
                                                 <a href="#!">
@@ -92,7 +120,7 @@ export const Cart = () => {
                                                         dispatch(action);
                                                     }}><i className="fa fa-minus" />
                                                     </button>
-                                                    <input id="form1" value={item.quantity} type="number" className="form-control text-center w-50" />
+                                                    <input id="quantity" value={item.quantity} type="number" className="form-control text-center w-50" />
                                                     <button className="btn btn-primary mx-2 me-2" onClick={() => {
                                                         const payload = {
                                                             id: item.id,
@@ -173,7 +201,25 @@ export const Cart = () => {
 
                                     </li>
                                 </ul>
-                                <button type="button" className="btn btn-primary btn-lg ">
+                                <button className="btn btn-primary btn-lg " onClick={() => {
+                                    console.log(cart);
+                                    // const order = {
+                                    //     orderDetail: [
+                                    //     ],
+                                    //     email: userLogin.email
+                                    // }
+                                    // cart.map(item => {
+                                    //     order.orderDetail.push({
+                                    //         productId: item.id,
+                                    //         quantity: item.quantity
+                                    //     })
+                                    // })
+                                    // const action = orderProductApi(order);
+                                    // dispatch(action);
+
+                                }
+
+                                }>
                                     Submit Order
                                 </button>
                             </div>

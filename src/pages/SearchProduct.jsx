@@ -3,7 +3,7 @@ import axios from 'axios';
 import { HeartFilled } from '@ant-design/icons';
 import React, { useEffect, useRef, useState } from 'react'
 import { NavLink, useSearchParams } from 'react-router-dom';
-import { http } from '../util/config';
+import { http, httpNonAuth } from '../util/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductApi } from '../Redux/Reducer/productReducer';
 const { Meta } = Card;
@@ -18,7 +18,7 @@ const SearchProduct = () => {
     const getProductByKeyWord = async () => {
 
         console.log(keyword)
-        let res = await http.get(`https://shop.cyberlearn.vn/api/Product?keyword=${keyword}`);
+        let res = await httpNonAuth.get(`https://shop.cyberlearn.vn/api/Product?keyword=${keyword}`);
         if (res) {
             setArrProduct(res.data.content);
 
@@ -60,7 +60,7 @@ const SearchProduct = () => {
 
                 <h3>Search Results</h3>
                 <Row gutter={[15, 20]}>
-                    {arrProduct.map((item) => {
+                    {arrProduct?.map((item) => {
                         return <Col lg={8} key={item.id}>
                             <Card hoverable
                                 style={{

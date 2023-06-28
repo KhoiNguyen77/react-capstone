@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../Redux/Reducer/userReducer';
+import { getAllProductApi } from '../Redux/Reducer/productReducer';
 
 const Order = () => {
-    const { userProfile } = useSelector(state => state.userReducer)
+    const { userProfile } = useSelector(state => state.userReducer);
+    const { orderItem } = useSelector(state => state.productReducer);
+
     const dispatch = useDispatch();
+
+    // const getOrderItem = async () => {
+    //     const actionAsync = getAllProductApi();
+    //     dispatch(actionAsync);
+    //     console.log(actionAsync)
+    // }
 
     const getUserProfile = async () => {
         const action = await getProfile();
@@ -12,6 +21,7 @@ const Order = () => {
     }
     useEffect(() => {
         getUserProfile()
+
     }, [])
     return (
         <section className="h-100 gradient-custom">
@@ -30,12 +40,16 @@ const Order = () => {
                                 <div className="card shadow-0 border mb-4">
                                     <div className="card-body">
                                         <div className="row">
+
                                             <div className="col-md-2">
-                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp" className="img-fluid" alt="Phone" />
+                                                <img src='' className="img-fluid" alt='shoes' />
                                             </div>
-                                            <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p className="text-muted mb-0">Samsung Galaxy</p>
+
+
+                                            <div className="col-md-2">
+
                                             </div>
+
                                             <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
                                                 <p className="text-muted mb-0 small">White</p>
                                             </div>

@@ -1,12 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { http } from '../../util/config';
+import { http, httpNonAuth, setStoreJson } from '../../util/config';
 import { setLoading } from './loadingReducer';
 
 const initialState = {
     cart: [
 
     ],
-    arrProduct: null
+    arrProduct: null,
+    // order: {
+    //     orderDetail: [
+    //         {
+    //             productId: '',
+    //             quantity: 0,
+    //         }
+    //     ],
+    //     email: ""
+    // }
 }
 
 const productReducer = createSlice({
@@ -46,6 +55,9 @@ const productReducer = createSlice({
                     }
                 }
             }
+        },
+        orderProductAction: (state, action) => {
+            // state.order = action.payload;
         }
 
     }
@@ -53,7 +65,7 @@ const productReducer = createSlice({
 }
 );
 
-export const { getAllProductAction, addCartAction, delCartAction, changeQuantityAction } = productReducer.actions
+export const { getAllProductAction, addCartAction, delCartAction, changeQuantityAction, orderProductAction } = productReducer.actions
 
 export default productReducer.reducer
 
@@ -62,7 +74,7 @@ export const getAllProductApi = () => {
     return async (dispatch) => {
         let loadingState = setLoading('block');
         dispatch(loadingState);
-        let res = await http.get('/api/Product');
+        let res = await httpNonAuth.get('/api/Product');
         const actionProduct = getAllProductAction(res?.data.content);//fulfill
         dispatch(actionProduct);
         let loadingStateNone = setLoading('none');
@@ -71,10 +83,18 @@ export const getAllProductApi = () => {
 
 
 }
-// export const getProductDetailApi = ()=>{
-//     return async (dispatch) => {
-//         let res = await http.get(`/api/product/getbyid?id=${params.id}`);
-//         const actionProduct = getAllProductAction(res.data.content);//fulfill
-//         dispatch(actionProduct);
-// }
+export const orderProductApi = (order) => {
+    // return async (dispatch) => {
+    //     let res = await http.post('api/Users/order', order);
+    //     if (res) {
+    //         console.log(res);
+    //         window.alert("Order success !")
+    //         setStoreJson(res.data.content);
+    //         const action = orderProductAction();
+    //         dispatch(action);
+    //     }
+
+    // }
+
+}
 

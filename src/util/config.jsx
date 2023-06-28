@@ -8,6 +8,10 @@ export const http = axios.create({
     timeout: 3000
 })
 
+export const httpNonAuth = axios.create({
+    baseURL: DOMAIN,
+    timeout: 3000
+})
 const configStore = {
     setStoreJson: (name, data) => {
         let stringData = JSON.stringify(data);
@@ -72,6 +76,23 @@ http.interceptors.request.use(request => {
 }, err => {
     return Promise.reject(err)
 })
+// http.interceptors.request.use(config => {
+//     config.headers = { ...config.headers }
+//     let token = getStoreJson(USER_LOGIN)?.accessToken;
+//     config.headers.Authorization = `Bearer ${token}`;
+//     config.headers.tokenCybersoft = `TOKEN_CYBERSOFT`;
+//     return config
+// }, err => {
+//     return Promise.reject(err)
+// });
+httpNonAuth.interceptors.request.use(config => {
+    config.baseURL = DOMAIN;
+    config.headers = { ...config.headers }
+    config.headers.tokenCybersoft = `TOKEN_CYBERSOFT`;
+    return config
+}, err => {
+    return Promise.reject(err)
+});
 
 // cấu hình cho các lệnh response từ server trả về
 http.interceptors.response.use(res => {

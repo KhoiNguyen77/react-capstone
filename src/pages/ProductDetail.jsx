@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { http } from '../util/config';
+import { http, httpNonAuth } from '../util/config';
 import { ShoppingCartOutlined, HeartFilled } from '@ant-design/icons';
 import { Button, Card, Col, Form, Row, Space, message } from 'antd';
 import { NavLink } from 'react-router-dom';
@@ -35,7 +35,7 @@ const ProductDetail = () => {
     };
 
     const getProductDetail = async () => {
-        const res = await http.get(`/api/product/getbyid?id=${params.id}`);
+        const res = await httpNonAuth.get(`/api/product/getbyid?id=${params.id}`);
         if (res) {
             setProductDetail(res.data.content);
 
@@ -83,7 +83,7 @@ const ProductDetail = () => {
                             </select> <span className='text-danger'>{selectmik.errors.size}</span>
                         </Space>
                         <Button size='large' className='mt-4 d-block' onClick={() => {
-                            console.log(productDetail)
+
                             const action = addCartAction(productDetail);
                             dispatch(action);
                             console.log(action)
@@ -96,14 +96,15 @@ const ProductDetail = () => {
                     <Row gutter={[15, 20]}>
                         {productDetail.relatedProducts?.map((item) => {
                             return <Col lg={8} key={item.id}>
-                                <Card hoverable
+                                <Card hoverable className='carditem mt-3 px-3'
                                     style={{
                                         width: 400,
                                     }}
                                     cover={
-                                        <img
+                                        <img className='product-image'
                                             alt="example"
                                             src={item.image}
+
                                         />
                                     }
                                     actions={[
@@ -117,6 +118,7 @@ const ProductDetail = () => {
                                         title={item.name}
                                         description={item.shortDescription}
                                     />
+
                                 </Card>
                             </Col>
                         })}
