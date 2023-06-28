@@ -81,52 +81,54 @@ const Header = () => {
         dispatch(clearProfile)
     }
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark  ">
-            <NavLink className="navbar-brand px-2" to="/">
-                <img src='./images/logo.png' alt='logo' width={70}></img>
-            </NavLink>
-            <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse justify-content-between px-2 align-items-center" id="collapsibleNavId">
-                <div className="left-menu">
-                    <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            {getLink("/register")}
-                        </li>
-                        <li className="nav-item">
-                            {getLink('/login')}
-                        </li>
-                    </ul>
+        <div className="container-fluit bg-dark">
+            <nav className="navbar navbar-expand-sm navbar-dark navbar-transparent  ">
+                <NavLink className="navbar-brand px-2" to="/">
+                    <img src='./images/logo.png' alt='logo' width={70}></img>
+                </NavLink>
+                <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse justify-content-between px-2 align-items-center" id="collapsibleNavId">
+                    <div className="left-menu">
+                        <ul className="navbar-nav me-auto mt-2 mt-lg-0">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/">Home</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                {getLink("/register")}
+                            </li>
+                            <li className="nav-item">
+                                {getLink('/login')}
+                            </li>
+                        </ul>
 
-                </div>
-                <div className="right-menu">
-                    <ul className="navbar-nav  mt-lg-0 align-items-center">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/search"><SearchOutlined style={{
-                                fontSize: '30px', paddingRight: '7px'
-                            }} /></NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/cart" > <ShoppingCartOutlined style={{
-                                fontSize: '30px', paddingRight: '7px'
-                            }} /><span className='cart-plus'>{cart.length}</span> </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <Dropdown menu={{ items }} >
-                                <a onClick={(e) => e.preventDefault()}>
-                                    {getProfileLink()}
-                                </a>
-                            </Dropdown>
-                        </li>
+                    </div>
+                    <div className="right-menu">
+                        <ul className="navbar-nav  mt-lg-0 align-items-center">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/search"><SearchOutlined style={{
+                                    fontSize: '30px', paddingRight: '7px'
+                                }} /></NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/cart" > <ShoppingCartOutlined style={{
+                                    fontSize: '30px', paddingRight: '7px'
+                                }} /><span className='cart-plus'>{cart.length}</span> </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <Dropdown menu={{ items }} >
+                                    <a onClick={(e) => e.preventDefault()}>
+                                        {getProfileLink()}
+                                    </a>
+                                </Dropdown>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>)
+            </nav>
+        </div>)
 }
 
 export default Header
