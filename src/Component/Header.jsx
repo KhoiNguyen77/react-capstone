@@ -5,15 +5,16 @@ import { ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
-import { USER_LOGIN } from '../util/config';
+import { USER_LOGIN, USER_PROFILE, getStoreJson } from '../util/config';
 import { getProfileAction, logInAction } from '../Redux/Reducer/userReducer';
 
 const Header = () => {
     const dispatch = useDispatch();
     const { cart } = useSelector(state => state.productReducer);
     const { userProfile } = useSelector(state => state.userReducer)
+    const profile = getStoreJson(USER_PROFILE);
     const getProfileLink = () => {
-        if (userProfile == null) {
+        if (profile == null) {
             return null
         } else {
             return <Avatar
@@ -25,14 +26,14 @@ const Header = () => {
                     xl: 70,
                     xxl: 75,
                 }}
-                src={userProfile.avatar}
+                src={profile.avatar}
             />
 
         }
     }
     const getLink = (route) => {
 
-        if (userProfile == null) {
+        if (profile == null) {
             // eslint-disable-next-line default-case
             switch (route) {
                 case "/register": {
@@ -75,6 +76,7 @@ const Header = () => {
     ]
     const signOut = () => {
         localStorage.removeItem(USER_LOGIN);
+        localStorage.removeItem(USER_PROFILE);
         const clearUser = logInAction(null)
         const clearProfile = getProfileAction(null);
         dispatch(clearUser);
