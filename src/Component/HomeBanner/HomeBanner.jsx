@@ -37,10 +37,10 @@ export const HomeBanner = () => {
                 style={{
                     "--swiper-navigation-color": "#fff",
                     "--swiper-pagination-color": "#fff",
-                    
+
                 }}
                 speed={600}
-
+                parallax={true}
                 pagination={{
                     dynamicBullets: true,
                 }}
@@ -50,48 +50,31 @@ export const HomeBanner = () => {
                 }}
 
                 navigation={true}
-                modules={[Pagination, Navigation, Autoplay]}
+                modules={[Pagination, Navigation, Autoplay, Parallax]}
                 className="mySwiper"
             >
-
+                <div
+                    slot="container-start"
+                    className="parallax-bg"
+                    style={{
+                        "background-image":
+                            "url('./images/background.webp')",
+                    }}
+                    data-swiper-parallax="-23%"
+                ></div>
 
                 {arrProduct?.map((item) => {
                     return <SwiperSlide key={item.id}>
-                        {/* <Row >
-                            <Col lg={12} md={24} sm={24} xs={24} className='mt-5'>
-                                <div className="title" data-swiper-parallax="-300">
-                                    {item.name}
-                                </div>
-                                <div className="subtitle" data-swiper-parallax="-200">
-                                    {item.shortDescription}
-                                </div>
-                                <div className="text" data-swiper-parallax="-100">
-                                    <p>
-                                        {item.description}
-                                    </p>
 
-                                    <NavLink to={`/productdetail/${item.id}`}>
-                                        <Button size='large' danger type='primary' >Add to Bag</Button>
-                                    </NavLink>
-
-                                </div>
-
-                            </Col>
-                            <Col lg={12} md={24} sm={24} xs={24}>
-                                <div className="image" data-swiper-parallax="-300">
-                                    <img src={item.image} alt={item.name} />
-                                </div>
-                            </Col>
-                        </Row> */}
                         <div className="home-banner-container p-3">
                             <div className="row text-center align-items-center">
                                 <div className="col-lg-6 col-12">
-                                    <p className="brandname fs-4">{item.name}</p>
+                                    <p className=" fs-4">{item.name}</p>
                                     <h3 className='display-2'>Summer Sale</h3>
-                                    <p className='text-white text-uppercase' style={{fontSize: '150px'}}> Products</p>
+                                    <p className='text-white text-uppercase productp' > Products</p>
                                 </div>
-                                <div className="col-lg-6 col-12 text-lg-end text-sm-center">
-                                    <img src={item.image} alt="shoes" className="home-banner-image" width={"400px"}/>
+                                <div className="col-lg-6 col-12 text-lg-end text-sm-center p-3">
+                                    <img src={item.image} alt="shoes" className="mx-auto img-fluid" />
                                     <div className="desc">
                                         <h5>Description</h5>
                                         <p>{item.shortDescription}</p>

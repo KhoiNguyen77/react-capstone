@@ -5,7 +5,7 @@ import { ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
-import { USER_LOGIN, USER_PROFILE, getStoreJson } from '../util/config';
+import { USER_LOGIN, USER_PROFILE, getStoreJson, logoURL, logoURL2 } from '../util/config';
 import { getProfileAction, logInAction } from '../Redux/Reducer/userReducer';
 
 const Header = () => {
@@ -83,54 +83,70 @@ const Header = () => {
         dispatch(clearProfile)
     }
     return (
-        <div className="container-fluit bg-dark">
-            <nav className="navbar navbar-expand-sm navbar-dark navbar-transparent  ">
-                <NavLink className="navbar-brand px-2" to="/">
-                    <img src='./images/logo.png' alt='logo' width={70}></img>
+
+        <nav className="navbar navbar-expand-lg navbar-dark  bg-dark" >
+            <div className="container-fluid  ">
+                <NavLink className="navbar-brand mx-3" to="/">
+                    <img src={logoURL} alt width={60}></img>
                 </NavLink>
+
                 <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
+
                 </button>
                 <div className="collapse navbar-collapse justify-content-between px-2 align-items-center" id="collapsibleNavId">
-                    <div className="left-menu">
-                        <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/">Home</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                {getLink("/register")}
-                            </li>
-                            <li className="nav-item">
-                                {getLink('/login')}
-                            </li>
-                        </ul>
+
+
+                    <ul className="navbar-nav me-auto mt-2 mt-lg-0  align-items-center">
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/">Home</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            {getLink("/register")}
+                        </li>
+                        <li className="nav-item">
+                            {getLink('/login')}
+                        </li>
+                    </ul>
+                    <div className="navbar-nav  d-flex  align-items-center">
+
+
+                        <NavLink className="nav-link me-3" to="/search">
+
+                            <SearchOutlined style={{
+                                fontSize: '30px', paddingRight: '7px'
+                            }} />
+                            <p className=" d-lg-none d-inline-block" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" >
+                                Search
+                            </p>
+                        </NavLink>
+
+
+
+                        <NavLink className="nav-link me-3 px-4" to="/cart" > <ShoppingCartOutlined style={{
+                            fontSize: '30px', paddingRight: '7px'
+                        }} />
+                            <span className='cart-plus'>{cart.length}</span>
+                        </NavLink>
+
+
+
+                        <Dropdown menu={{ items }} className='me-3'>
+                            <a onClick={(e) => e.preventDefault()}>
+                                {getProfileLink()}
+                            </a>
+                        </Dropdown>
+                        <p className=" d-lg-none text-white d-block" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" >
+                            Profile
+                        </p>
+
 
                     </div>
-                    <div className="right-menu">
-                        <ul className="navbar-nav  mt-lg-0 align-items-center">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/search"><SearchOutlined style={{
-                                    fontSize: '30px', paddingRight: '7px'
-                                }} /></NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/cart" > <ShoppingCartOutlined style={{
-                                    fontSize: '30px', paddingRight: '7px'
-                                }} /><span className='cart-plus'>{cart.length}</span> </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <Dropdown menu={{ items }} >
-                                    <a onClick={(e) => e.preventDefault()}>
-                                        {getProfileLink()}
-                                    </a>
-                                </Dropdown>
-                            </li>
 
-                        </ul>
-                    </div>
                 </div>
-            </nav>
-        </div>)
+            </div>
+        </nav >
+    )
 }
 
 export default Header

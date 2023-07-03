@@ -12,7 +12,7 @@ import Profile from './pages/Profile';
 import UpdateProfile from './pages/UpdateProfile';
 import Order from './pages/Order';
 import Home from './pages/Home';
-import ProductDetail from './pages/ProductDetail';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 import { Cart } from './pages/Cart';
 import SearchProduct from './pages/SearchProduct';
 import Loading from './HOC/Loading';

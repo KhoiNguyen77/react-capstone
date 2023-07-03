@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import { Avatar, Button, Card, Col, Row, message, Popconfirm } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { changeQuantityAction, delCartAction, getAllProductApi, orderProductAction, orderProductApi } from '../Redux/Reducer/productReducer';
 import { customNavigate } from '..';
-import { useFormik } from 'formik'
-import * as yup from 'yup';
-import { USER_LOGIN } from '../util/config';
+import { NavLink } from 'react-router-dom';
+import { LeftCircleFilled } from '@ant-design/icons'
+
 export const Cart = () => {
     const { cart, order } = useSelector(state => state.productReducer);
     let { userLogin } = useSelector(state => state.userReducer);
@@ -16,30 +14,8 @@ export const Cart = () => {
         const actionAsync = getAllProductApi();
         dispatch(actionAsync);
     }
-    const handleOrder = (e) => {
 
 
-    }
-
-    // const frm = useFormik({
-    //     initialValues: {
-    //         productId: orderDetail?.id,
-    //         quantity: orderDetail?.quantity
-    //     },
-    //     onSubmit: (values) => {
-    //         console.log(actionOrder)
-    //         const actionOrder = orderProductApi(values);
-    //         dispatch(actionOrder);
-    //     },
-    //     validationSchema: yup.object().shape({
-    //         productId: yup.string().required('Email cannot be blank !').email('email is not valid'), //.matches()
-    //         quantity: yup.number().required('Password cannt be blank')
-    //     })
-    // })
-    // const orderProduct = (value) => {
-    //     const actionOrder = orderProductApi(value);
-    //     dispatch(actionOrder);
-    // }
     const tinhTong = () => {
         let sum = 0;
         for (let item of cart) {
@@ -67,7 +43,9 @@ export const Cart = () => {
         <section>
             <div className="container py-5">
                 <div className="row d-flex justify-content-center my-4">
+                    <NavLink className="nav-link" to="/"> <button className='btn btn-outline-dark my-3 mx-2'> Continue Shopping </button> </NavLink>
                     <div className="col-md-8">
+
                         <div className="card mb-4">
                             <div className="card-header py-3">
 
@@ -203,19 +181,19 @@ export const Cart = () => {
                                 </ul>
                                 <button className="btn btn-primary btn-lg " onClick={() => {
                                     console.log(cart);
-                                    // const order = {
-                                    //     orderDetail: [
-                                    //     ],
-                                    //     email: userLogin.email
-                                    // }
-                                    // cart.map(item => {
-                                    //     order.orderDetail.push({
-                                    //         productId: item.id,
-                                    //         quantity: item.quantity
-                                    //     })
-                                    // })
-                                    // const action = orderProductApi(order);
-                                    // dispatch(action);
+                                    const order = {
+                                        orderDetail: [
+                                        ],
+                                        email: userLogin.email
+                                    }
+                                    cart.map(item => {
+                                        order.orderDetail.push({
+                                            productId: item.id,
+                                            quantity: item.quantity
+                                        })
+                                    })
+                                    const action = orderProductApi(order);
+                                    dispatch(action);
 
                                 }
 

@@ -7,15 +7,7 @@ const initialState = {
 
     ],
     arrProduct: null,
-    // order: {
-    //     orderDetail: [
-    //         {
-    //             productId: '',
-    //             quantity: 0,
-    //         }
-    //     ],
-    //     email: ""
-    // }
+
 }
 
 const productReducer = createSlice({
@@ -25,6 +17,8 @@ const productReducer = createSlice({
         getAllProductAction: (state, action) => {
             state.arrProduct = action.payload
         },
+
+
         addCartAction: (state, action) => {
             let item = { ...action.payload, quantity: 1 };
             let itemCart = state.cart.find(sp => sp.id === item.id && sp.selectedSize === item.selectedSize);
@@ -55,7 +49,7 @@ const productReducer = createSlice({
             }
         },
         orderProductAction: (state, action) => {
-            // state.order = action.payload;
+            state.order = action.payload;
         }
 
     }
@@ -79,20 +73,32 @@ export const getAllProductApi = () => {
         dispatch(loadingStateNone);
     }
 
-
 }
-export const orderProductApi = (order) => {
-    // return async (dispatch) => {
-    //     let res = await http.post('api/Users/order', order);
-    //     if (res) {
-    //         console.log(res);
-    //         window.alert("Order success !")
-    //         setStoreJson(res.data.content);
-    //         const action = orderProductAction();
-    //         dispatch(action);
-    //     }
 
-    // }
+
+export const getProductFavoriteApi = () => {
+    return async (dispatch) => {
+        let res = await http.get('/api/Users/getproductfavorite');
+        const actionProduct = getAllProductAction(res?.data.content);
+        dispatch(actionProduct);
+        console.log(res);
+    }
+}
+
+
+
+export const orderProductApi = (order) => {
+    return async (dispatch) => {
+        let res = await http.post('api/Users/order', order);
+        if (res) {
+            console.log(res);
+            window.alert("Order success !")
+            setStoreJson(res.data.content);
+            const action = orderProductAction();
+            dispatch(action);
+        }
+
+    }
 
 }
 

@@ -65,7 +65,7 @@ export const getProfile = () => {
 
         let loadingState = setLoading('block');
         dispatch(loadingState);
-        const res = await http.post('api/Users/getProfile', null)
+        const res = await http.post('api/Users/getProfile')
         if (res) {
             const action = getProfileAction(res.data.content);
             setStoreJson(USER_PROFILE, res.data.content);
