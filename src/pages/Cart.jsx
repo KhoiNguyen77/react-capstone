@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantityAction, delCartAction, getAllProductApi, orderProductAction, orderProductApi } from '../Redux/Reducer/productReducer';
 import { customNavigate } from '..';
 import { NavLink } from 'react-router-dom';
-import { LeftCircleFilled } from '@ant-design/icons'
+import { USER_LOGIN, USER_PROFILE, getStoreJson } from '../util/config';
+
 
 export const Cart = () => {
-    const { cart, order } = useSelector(state => state.productReducer);
+    const { cart } = useSelector(state => state.productReducer);
     let { userLogin } = useSelector(state => state.userReducer);
+    const account = getStoreJson(USER_LOGIN);
     console.log(cart);
     const dispatch = useDispatch();
     const getProductApi = async () => {
@@ -29,7 +31,7 @@ export const Cart = () => {
         } return sum
     }
     const checkLogin = () => {
-        if (userLogin == null) {
+        if (account == null) {
             customNavigate.push('/login')
         } else {
             return

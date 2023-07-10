@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductAction, getAllProductApi, getProductFavoriteApi } from '../../Redux/Reducer/productReducer';
 import { NavLink, useParams } from 'react-router-dom';
 import './HomeProduct.css'
-import { http, httpNonAuth } from '../../util/config';
+import { USER_LOGIN, getStoreJson, http, httpNonAuth } from '../../util/config';
 import { customNavigate } from '../..';
 const { Meta } = Card;
 const HomeProduct = () => {
@@ -17,7 +17,7 @@ const HomeProduct = () => {
     let { userLogin } = useSelector(state => state.userReducer);
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
-
+    const account = getStoreJson(USER_LOGIN);
     const getProductAdidas = async () => {
         const res = await httpNonAuth.get('/api/Product/getProductByCategory?categoryId=ADIDAS');
         if (res) {
@@ -54,20 +54,14 @@ const HomeProduct = () => {
             duration: 5,
         });
     };
-    const checkLogin = () => {
-        if (userLogin == null) {
-            customNavigate.push('/login')
-        } else {
-            return
-        }
-    }
+
 
     useEffect(() => {
         getProductApi();
         getProductAdidas();
         getProductNike();
         getProductVan();
-        checkLogin();
+
     }, [])
 
 
@@ -84,13 +78,13 @@ const HomeProduct = () => {
                 {productAdidas?.map((item) => {
                     return <div class="col-lg-4 col-md-6 mb-4" key={item.id}>
                         <div class="card carditem">
-                            <div class="">
+                            <div class="container">
                                 <img src={item.image}
                                     class="w-100 product-image" />
 
                                 <div class="maskl">
                                     <div class="d-flex justify-content-start align-items-end h-100">
-                                        <h5><span class="badge bg-primary ms-2">bestseller</span></h5>
+                                        <h5><span class="badge bg-primary p-2">Best seller</span></h5>
                                     </div>
                                 </div>
                                 <div class="label-top  ">
@@ -108,7 +102,7 @@ const HomeProduct = () => {
                                 <a href="" class="text-reset ">
                                     <p>{item.shortDescription}</p>
                                 </a>
-                                <div className="row text-center">
+                                <div className="row">
                                     <h6 class="mb-3 col price">{item.price}$</h6>
                                     <NavLink className='col-md-5 offset-md-4' to={`/productdetail/${item.id}`}><button className='btn btn-danger  align-item-left'> More Detail </button></NavLink>
                                 </div>
@@ -125,13 +119,13 @@ const HomeProduct = () => {
                 {productNike?.map((item) => {
                     return <div class="col-lg-4 col-md-6 mb-4" key={item.id}>
                         <div class="card carditem">
-                            <div class="">
+                            <div class="container">
                                 <img src={item.image}
                                     class="w-100 product-image" />
 
                                 <div class="maskl">
                                     <div class="d-flex justify-content-start align-items-end h-100">
-                                        <h5><span class="badge bg-primary ms-2">bestseller</span></h5>
+                                        <h5><span class="badge bg-primary p-2">Best seller</span></h5>
                                     </div>
                                 </div>
                                 <div class="label-top  ">
@@ -149,7 +143,7 @@ const HomeProduct = () => {
                                 <a href="" class="text-reset ">
                                     <p>{item.shortDescription}</p>
                                 </a>
-                                <div className="row text-center">
+                                <div className="row">
                                     <h6 class="mb-3 col price">{item.price}$</h6>
                                     <NavLink className='col-md-5 offset-md-4' to={`/productdetail/${item.id}`}><button className='btn btn-danger  align-item-left'> More Detail </button></NavLink>
                                 </div>
@@ -164,13 +158,13 @@ const HomeProduct = () => {
                 {productVan?.map((item) => {
                     return <div class="col-lg-4 col-md-6 mb-4" key={item.id}>
                         <div class="card carditem">
-                            <div class="">
+                            <div class="container">
                                 <img src={item.image}
                                     class="w-100 product-image" />
 
                                 <div class="maskl">
                                     <div class="d-flex justify-content-start align-items-end h-100">
-                                        <h5><span class="badge bg-primary ms-2">bestseller</span></h5>
+                                        <h5><span class="badge bg-primary p-2">Best seller</span></h5>
                                     </div>
                                 </div>
                                 <div class="label-top  ">
@@ -188,7 +182,7 @@ const HomeProduct = () => {
                                 <a href="" class="text-reset ">
                                     <p>{item.shortDescription}</p>
                                 </a>
-                                <div className="row text-center">
+                                <div className="row">
                                     <h6 class="mb-3 col price">{item.price}$</h6>
                                     <NavLink className='col-md-5 offset-md-4' to={`/productdetail/${item.id}`}><button className='btn btn-danger  align-item-left'> More Detail </button></NavLink>
                                 </div>

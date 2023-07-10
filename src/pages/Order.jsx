@@ -6,18 +6,19 @@ import { USER_PROFILE, getStoreJson } from '../util/config';
 import { customNavigate } from '..';
 
 const Order = () => {
-    const profile = getStoreJson(USER_PROFILE);
     const dispatch = useDispatch();
+    const getUserProfile = async () => {
+        const action = await getProfile();
+        dispatch(action)
+    }
 
+    console.log(2);
     // const getOrderItem = async () => {
     //     const actionAsync = getAllProductApi();
     //     dispatch(actionAsync);
     //     console.log(actionAsync)
     // }
-    const getUserProfile = async () => {
-        const action = await getProfile();
-        dispatch(action)
-    }
+
     const tinhTongTungOrder = (orders = []) => {
         let sum = 0;
         orders.map(order => {
@@ -29,7 +30,6 @@ const Order = () => {
     const tinhTongOrder = (orders = []) => {
 
         orders.map(order => {
-            console.log(order.orderDetail);
             order.orderDetail.forEach(item => {
                 if (item.price) {
                     total += item.price;
@@ -41,6 +41,7 @@ const Order = () => {
     useEffect(() => {
         getUserProfile();
     }, [])
+    const profile = getStoreJson(USER_PROFILE) ? getStoreJson(USER_PROFILE) : [];
     return (
         <section className="h-100 gradient-custom">
             <div className="container py-5 h-100">
@@ -122,7 +123,7 @@ const Order = () => {
                                         <p className="text-muted mb-0">Customer Email : {item.email}</p>
                                         <p className="text-muted mb-0"><span className="fw-bold me-4">Delivery Charges</span> Free</p>
                                     </div>
-                                    <hr className="mb-4" style={{ backgroundColor: '#e0e0e0', opacity: 1}} />
+                                    <hr className="mb-4" style={{ backgroundColor: '#e0e0e0', opacity: 1 }} />
                                 </div>
                             })}
 

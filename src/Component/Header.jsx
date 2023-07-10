@@ -5,12 +5,14 @@ import { ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
-import { USER_LOGIN, USER_PROFILE, getStoreJson, logoURL, logoURL2 } from '../util/config';
+import { USER_CART, USER_LOGIN, USER_PROFILE, getStoreJson, logoURL } from '../util/config';
 import { getProfileAction, logInAction } from '../Redux/Reducer/userReducer';
 
 const Header = () => {
     const dispatch = useDispatch();
     const { cart } = useSelector(state => state.productReducer);
+    // const cart = getStoreJson(USER_CART) ? getStoreJson(USER_CART) : [];
+    // console.log(cart);
     const { userProfile } = useSelector(state => state.userReducer)
     const profile = getStoreJson(USER_PROFILE);
     const getProfileLink = () => {

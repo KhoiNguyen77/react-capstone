@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { USER_LOGIN, USER_PROFILE, getStoreJson, http, setCookieJson, setStoreJson } from '../../util/config';
+import { USER_LOGIN, USER_PROFILE, getStoreJson, http, setStoreJson } from '../../util/config';
 import { customNavigate } from '../..';
 import { setLoading } from './loadingReducer';
 

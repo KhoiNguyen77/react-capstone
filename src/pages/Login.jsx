@@ -7,7 +7,7 @@ import { logInAction, login } from '../Redux/Reducer/userReducer';
 import { customNavigate } from '..';
 import FacebookLogin from 'react-facebook-login';
 import { USER_LOGIN, http, setStoreJson } from '../util/config';
-import { message } from 'antd';
+
 
 const Login = () => {
     const { userLogin } = useSelector(state => state.userReducer)
@@ -29,6 +29,7 @@ const Login = () => {
             const getAccount = await http.post('api/Users/facebooklogin', data);
             setStoreJson(USER_LOGIN, getAccount.data?.content);
             customNavigate.push("/profile")
+            console.log(data)
         }
     }
     const checkLogin = () => {
@@ -53,9 +54,10 @@ const Login = () => {
                             <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                                 <p className="lead fw-normal mb-0 me-3">Sign in with</p>
                                 <FacebookLogin
-                                    appId="1001369850865291"
+                                    appId="491826044311361"
                                     autoLoad={false}
                                     icon='fab fa-facebook-f'
+                                    fields='name,email,picture'
                                     cssClass='btn btn-primary rounded-circle floating mx-1'
                                     callback={responseFacebook}
                                     textButton=''

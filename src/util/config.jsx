@@ -4,6 +4,7 @@ export const DOMAIN = 'https://shop.cyberlearn.vn/'
 export const USER_LOGIN = 'userLogin';
 export const USER_PROFILE = 'userProfile';
 export const logoURL = "../images/logo.png"
+export const USER_CART = 'cart';
 
 export const TOKKEN = 'accessToken'
 export const http = axios.create({

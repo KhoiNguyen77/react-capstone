@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { http, httpNonAuth } from '../../util/config';
+import { http, httpNonAuth, setStoreJson } from '../../util/config';
 import { ShoppingCartOutlined, HeartFilled } from '@ant-design/icons';
 import { Button, Card, Col, Divider, Form, Row, Select, Space, message } from 'antd';
 import { NavLink } from 'react-router-dom';
@@ -29,7 +29,7 @@ const ProductDetail = () => {
         const res = await httpNonAuth.get(`/api/product/getbyid?id=${params.id}`);
         if (res) {
             setProductDetail(res.data.content);
-
+            setStoreJson(res.data.content);
         }
     }
 
@@ -73,7 +73,7 @@ const ProductDetail = () => {
                                     <span className="badge bg-info me-1">New</span>
                                 </a>
                                 <a href>
-                                    <span className="badge bg-danger me-1">Bestseller</span>
+                                    <span className="badge bg-danger me-1">Best seller</span>
                                 </a>
                             </div>
                             <p className="lead">

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { http, httpNonAuth, setStoreJson } from '../../util/config';
+import { USER_CART, USER_PROFILE, getStoreJson, http, httpNonAuth, setStoreJson } from '../../util/config';
 import { setLoading } from './loadingReducer';
+import { customNavigate } from '../..';
 
 const initialState = {
     cart: [
@@ -26,6 +27,7 @@ const productReducer = createSlice({
                 itemCart.quantity += 1;
             } else {
                 state.cart.push(item);
+                setStoreJson(USER_CART, item);
             }
         },
         delCartAction: (state, action) => {
@@ -68,6 +70,7 @@ export const getAllProductApi = () => {
         dispatch(loadingState);
         let res = await httpNonAuth.get('/api/Product');
         const actionProduct = getAllProductAction(res?.data.content);//fulfill
+        getStoreJson(res?.data.content)
         dispatch(actionProduct);
         let loadingStateNone = setLoading('none');
         dispatch(loadingStateNone);
@@ -95,7 +98,10 @@ export const orderProductApi = (order) => {
             window.alert("Order success !")
             setStoreJson(res.data.content);
             const action = orderProductAction();
-            dispatch(action);
+            await dispatch(action);
+            setInterval(customNavigate.push('/order'), 1000);
+            localStorage.removeItem(USER_CART);
+
         }
 
     }
